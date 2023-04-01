@@ -90,16 +90,25 @@ class Hobbit
         @is_adult = is_adult
         @is_old = is_old
         @has_ring = has_ring
-    end
-    def check_age
-        if @age >= 33; @is_adult = true end
+        if @name == "Frodo"; @has_ring = true end
+        if @age >= 101 
+            @is_old = true 
+        elsif @age >= 33 
+            @is_adult = true
+        end
     end
     def celebrate_birthday
         @age = @age.next
+        if @age >= 33; @is_adult = true end
+        if @age >= 101; @is_old = true end
     end
 end
 
-hobbit1 = Hobbit.new("Frodo", 'Cautious', 32)
+hobbit1 = Hobbit.new("Frodo", 'Adventurous', 32)
 p hobbit1
 hobbit1.celebrate_birthday
-p hobbit1.check_age
+p hobbit1
+hobbit2 = Hobbit.new("Bilbo", "Causitous", 100)
+p hobbit2
+hobbit2.celebrate_birthday
+p hobbit2

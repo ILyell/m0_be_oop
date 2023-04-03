@@ -96,9 +96,9 @@ class Hobbit
         @is_adult = is_adult
         @is_old = is_old
         @has_ring = false
-     end
-        
-     def ring
+    end
+    
+    def ring
         if @name == "Frodo"; @has_ring = true end
     end
         

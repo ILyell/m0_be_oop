@@ -4,6 +4,7 @@
 # it should have a method called "say" that returns whatever string is passed in, with "*~*" at the beginning and end of the string
 
 class Unicorn
+    attr_reader :name, :color
     def initialize (name)
         @name = name
         @color = "silver"
@@ -25,6 +26,7 @@ p unicorn_1.say("Hello there!")
 #  it should have a drink method. When called, the thirsty attribute changes to false
 
 class Vampire
+    attr_reader :name, :pet, :thristy
     def initialize (name, pet = "Bat")
         @name = name
         @pet = pet
@@ -48,22 +50,23 @@ p vampire1
 #  it should have a eat method. If the dragon eats 4 times, it is no longer hungry
 
 class Dragon
-    def initialize (name, rider, color, hunger = 0)
+    attr_reader :name, :rider, :color, :is_hungry, :hunger
+    def initialize (name, rider, color)
         @name = name
         @rider = rider
         @color = color
         @is_hungry = true
-        @hunger = hunger
+        @hunger = 0
     end
     def eat
-        @hunger = @hunger.next
-        if @hunger == 4 
-            @is_hungry = false
-        end
+       @hunger += 1        
+       if @hunger == 4 
+          @is_hungry = false
+       end
     end
 end
 
-dragon1 = Dragon.new("Ben", "Sam", "Purple")
+dragon1 = Dragon.new("Ben", "Tim", "Purple")
 p dragon1
 dragon1.eat
 p dragon1
@@ -71,6 +74,7 @@ dragon1.eat
 dragon1.eat
 dragon1.eat
 p dragon1
+
 
 
 #  Write a Hobbit class
@@ -83,28 +87,34 @@ p dragon1
 #  it should have a has_ring attribute. If the Hobbit's name is "Frodo", true, if not, false.
 
 class Hobbit
-    def initialize (name, disposition, age = 0, is_adult = false, is_old = false, has_ring = false)
+    
+    attr_reader :name, :disposition, :age, :is_adult, :is_old, :has_ring
+    def initialize (name, disposition, age = 0, is_adult = false, is_old = false)
         @name = name
         @disposition = disposition
         @age = age
         @is_adult = is_adult
         @is_old = is_old
-        @has_ring = has_ring
+        @has_ring = false
+     end
+        
+     def ring
         if @name == "Frodo"; @has_ring = true end
+    end
+        
+    def celebrate_birthday
+        @age = @age.next
         if @age >= 101 
             @is_old = true 
         elsif @age >= 33 
             @is_adult = true
         end
     end
-    def celebrate_birthday
-        @age = @age.next
-        if @age >= 33; @is_adult = true end
-        if @age >= 101; @is_old = true end
-    end
 end
 
 hobbit1 = Hobbit.new("Frodo", 'Adventurous', 32)
+p hobbit1
+hobbit1.ring
 p hobbit1
 hobbit1.celebrate_birthday
 p hobbit1
